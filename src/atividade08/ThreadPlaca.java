@@ -1,4 +1,4 @@
-package atividade8;
+package atividade08;
 
 import java.util.Random;
 
@@ -16,20 +16,26 @@ public class ThreadPlaca extends Thread {
 	@Override
 	public void run() {
 		for(int i = 1; i <= quantPlacas; i++) {
-			System.out.println("");
+			System.out.print(i + "ª placa: ");
 			for(int j = 1; j <= 7; j++) {
 				if(j <= 3 || j == 5)
 					System.out.print(sortearLetra());
 				else
 					System.out.print(sortearNumero());
 			}
+			System.out.println();
 		}
 	}
 	
 	public char sortearLetra() {
 		int indice = sorteador.nextInt(alfabeto.length());
+		char letra = alfabeto.charAt(indice);
 		
-		
+		return letra;
+	}
+	
+	public int sortearNumero() {
+		return sorteador.nextInt(10);
 	}
 	
 	public String gerarAlfabeto() {

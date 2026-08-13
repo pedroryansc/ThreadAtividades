@@ -1,4 +1,4 @@
-package atividade3;
+package atividade03;
 
 import java.util.Random;
 
@@ -15,12 +15,12 @@ public class ThreadSorteio extends Thread {
 	
 	@Override
 	public void run() {
-		System.out.print("\nNúmeros sorteados entre " + inicio + " e " + fim +  ": ");
+		System.out.println("\nNúmeros sorteados entre " + inicio + " e " + fim +  ": ");
 		
 		Random sorteador = new Random();
 		
 		for(int i = 0; i < quantNumeros; i++) {
-			int numero = sorteador.nextInt((fim - inicio) + 1) + inicio;
+			int numero = sorteador.nextInt(inicio, fim + 1);
 			System.out.print(numero + " | ");
 		}
 	}
