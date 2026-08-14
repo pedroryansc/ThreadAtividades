@@ -1,14 +1,22 @@
 package atividade11;
 
 public class ParteCarro extends Thread {
-	String nome;
+	private String nome;
+	private int tempoTarefa;
 	
-	public ParteCarro(String nome) {
+	public ParteCarro(String nome, int tempoTarefa) {
 		this.nome = nome;
+		this.tempoTarefa = tempoTarefa;
 	}
 	
 	@Override
 	public void run() {
-		System.out.println("Parte do carro construída (" + nome + ")");
+		try {
+			Thread.sleep(tempoTarefa);
+		} catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Parte do carro construída (" + nome + ") em " + (tempoTarefa / 1000) + "s");
 	}
 }
