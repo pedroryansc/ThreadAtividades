@@ -1,21 +1,25 @@
 package atividade10;
 
-import java.util.Random;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
 	public static void main(String[] args) {
-		Random sorteador = new Random();
-		int quantPacientes = sorteador.nextInt(1, 11);
+		BlockingQueue<Paciente> filaPacientes = new LinkedBlockingQueue<>();
 		
-		ThreadAtendimento[] atendimentos = new ThreadAtendimento[quantPacientes];
-		
-		int tempoAtendimento = 0;
-		for(int i = 0; i < quantPacientes; i++) {
-			tempoAtendimento = sorteador.nextInt(1000, 10000);
-			ThreadAtendimento atendimento = new ThreadAtendimento(tempoAtendimento);
-			atendimentos[i] = atendimento;
+		for(int i = 1; i <= 10; i++) {
+			Paciente paciente = new Paciente(i);
+			filaPacientes.add(paciente);
+			
+			System.out.println(paciente + " entrou na fila do pronto-socorro");
 		}
 		
+		Medico medico1 = new Medico(1, filaPacientes);
+		Medico medico2 = new Medico(2, filaPacientes);
 		
+		System.out.println("\nIniciando os atendimentos\n");
+		
+		medico1.start();
+		medico2.start();
 	}
 }
